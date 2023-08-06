@@ -9,14 +9,14 @@
 }
 
 
-.header_text {
+.header_text{
     color: white;
     text-align: right;
-    font-size: 25px;
+    font-size: 40px;
     width: 100%;
     float: right;
-    margin-right: 15px;
-    margin-top: 15px;
+    margin-right: 25px;
+    margin-top: 4px;
 }
 
 .header_btn{
@@ -26,7 +26,7 @@
     margin-top: -29px;
     margin-left: 25px;
     border: none;
-    border-radius: 8px;
+    border-radius: 15px;
     height: 30px;
     width: 110px;
     padding-left: 29px;
@@ -34,6 +34,7 @@
     background-position: 10px;
     font-family: 'Aduma';
     color:white;
+    cursor: pointer;
 }
 
 .header{
@@ -54,10 +55,13 @@
 }
 
 .left_div{
-    width: 67%;
+    width: 66%;
     float: left;
-    border: 1px solid white;
     height: 100%;
+    color: white;
+    margin-left: 1%;
+    border-radius: 8px;
+    background-color: #2F3A4B;
 }
 
 .right_div{
@@ -115,4 +119,113 @@
     background-image: url('./assets/check.png');
     background-repeat: no-repeat;
     background-position: 215px 0px
+}
+
+.right_div_top{
+    border-bottom: 1px solid #9E9E9E;
+    width: 95%;
+    margin: 0 auto;
+    padding-bottom: 26px;
+}
+
+.right_div_bottom_subtext{
+    color: white;
+    text-align: right;
+    font-size: 20px;
+    margin-right: 12px;
+    margin-top: 12px;
+    direction: rtl;
+}
+
+.right_div_bottom_text{
+    color: white;
+    text-align: right;
+    font-size: 25px;
+    margin-right: 12px;
+    padding-top:22px;
+    padding-right: 50px;
+    background-image: url('./assets/new.png');
+    background-repeat: no-repeat;
+    background-position: 172px 19px;
+}
+
+.main_div_tabs_header{
+    color: white;
+    background-color: #2F3A4B;
+    height: 45px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.main_div_tabs_header span{
+    margin-left: 20px;
+    cursor: pointer;
+    text-align: right;
+    float: right;
+    margin-top: 15px;
+    padding-right: 20px;
+    height: 27px;
+    width: 52px;
+}
+
+.no_bg{
+    background-image: url('./assets/Cleanup\ Edges.png');
+    background-repeat: no-repeat;
+    background-position: 55px 3px;
+    /* border-bottom: 3px solid #9C27B0; */
+}
+
+.original{
+    background-image: url('./assets/Image.png');
+    background-repeat: no-repeat;
+    background-position: 58px 4px;
+}
+
+
+
+.original_tab, .no_bg_tab{
+
+    height: 80%;
+    background-color: #161B21;
+}
+
+.eula_text{
+    float: right;
+    font-size: 12px;
+    margin: 20px;
+    color: #aeaeae;
+}
+
+.eula_btn{
+
+    background-color: #475366;
+    background-color: #475366;
+    border: none;
+    color: white;
+
+    font-size: 12px;
+    width: 102px;
+    height: 25px;
+    border-radius: 15px;
+    float: left;
+    margin: 15px;
+    background-image: url('./assets/eula.png');
+    background-repeat: no-repeat;
+    background-position: 10px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.logo_img{
+    position: relative;
+    top: -9px;
+}
+
+.banner_img{
+    margin-top: 14px;
+    margin-left: 82px;
+}
+
+.input_file{
+    display: none;
 }
