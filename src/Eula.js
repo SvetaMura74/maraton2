@@ -1,7 +1,5 @@
 import './Eula.css';
 
-import { useState, useRef } from "react";
-
 import close1 from "./assets/close1.png"
 
 

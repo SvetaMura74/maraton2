@@ -1,5 +1,4 @@
 import './Bg.css';
-
 import { useState, useRef } from "react";
 import axios from 'axios';
 
@@ -21,6 +20,9 @@ function Bg() {
 
   const [show_eula, setshow_eula] = useState(false);
 
+  const [image_name, setimage_name] = useState("");
+
+  const [color_to_api, setcolor_to_api] = useState("");
 
   function change_tab(e) {
 
@@ -48,26 +50,31 @@ function Bg() {
 
     let data = e.target.files[0];
     
-    debugger;
+ 
 
     if(data.type=='image/png' || data.type=='image/jpg' || data.type=='image/jpeg') {
-      debugger;
+     
         const formData = new FormData();
         
       const config = {     
           headers: { 'content-type': 'multipart/form-data' }
       }
 
+      formData.append(
+          "myFile",
+          data,
+          data.name
+      );
+
+      formData.append( "color_to_api",  color_to_api);
       
-        formData.append(
-            "myFile",
-            data,
-            data.name
-        );
 
       axios.post(`http://localhost:5000/upload_file`, formData, config)
         .then(res => {
+
             console.log(res);
+            setimage_name(res.data.imageName);
+
       })
 
     } else{
@@ -79,8 +86,17 @@ function Bg() {
     
   }
 
+
+  function send_color(color){
+      console.log(color);
+  
+      setcolor_to_api(color);
+
+  }
+
   return (
   <div className="Bg">
+
      <div className="header">
         <span className='header_text'> העלאת תמונה כדי להסיר את הרקע </span>
         <button className="header_btn"  onClick={upload_file} > העלאת תמונה</button>
@@ -101,9 +117,9 @@ function Bg() {
           </div>
 
           {display_no_bg_tab=="yes" ?  
-             <Original/>
+             <Original image_name={image_name}/>
           :
-             <No_bg/>
+             <No_bg image_name={image_name}  send_color_func={send_color}/>
           }
       
           <div className='left_div_footer'>

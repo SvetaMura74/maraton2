@@ -1,10 +1,12 @@
 
 import './No_bg.css';
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function No_bg() {
+function No_bg(props) {
 
+
+    debugger;
     const [color, setcolor] = useState('#000');
 
     const inputElement = useRef();
@@ -14,11 +16,15 @@ function No_bg() {
     }
 
     function change_color(e) {
-       
         // console.log(e.target.value);
         setcolor(e.target.value);
-
+        props.send_color_func(color);
     }
+
+
+    // useEffect(() => {
+    //     props.send_color_func(color);
+    // },[color]);
 
 
     return (
@@ -32,7 +38,20 @@ function No_bg() {
          <span className='display_color' style={{backgroundColor:color}}> </span>
          </div>
 
-        <input type="color" className="input_color" onChange={change_color} ref={inputElement}/>
+        <input type="color" className="input_color" onChange={change_color}  ref={inputElement}/>
+
+        {props.image_name? 
+        <div className='image_bo_bg_div'>
+            <img className="image_no_bg" src={"http://localhost:5000/no_bg_"+props.image_name} />
+
+        </div>
+        : "" }
+
+        <div className="loading"> 
+            <div className='loading_inner'>
+               39%  
+            </div>
+        </div>
       </div>
     )
 }
