@@ -5,8 +5,6 @@ import { useState, useRef, useEffect } from "react";
 
 function No_bg(props) {
 
-
-    debugger;
     const [color, setcolor] = useState('#000');
 
     const inputElement = useRef();
@@ -46,12 +44,12 @@ function No_bg(props) {
 
         </div>
         : "" }
-
+{/* 
         <div className="loading"> 
             <div className='loading_inner'>
                39%  
             </div>
-        </div>
+        </div> */}
       </div>
     )
 }

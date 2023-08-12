@@ -11,6 +11,11 @@ import No_bg from './No_bg'
 
 import Eula from './Eula'
 
+import download_folder from './assets/Downloads Folder.png'
+import not_robot from './assets/not_robot.png'
+
+import close from './assets/close1.png'
+
 function Bg() {
 
   const inputElement = useRef();
@@ -23,6 +28,10 @@ function Bg() {
   const [image_name, setimage_name] = useState("");
 
   const [color_to_api, setcolor_to_api] = useState("");
+
+  const [show_popup, setshow_popup] = useState(false);
+
+  const [checkbox_val, setcheckbox_val] = useState(false);
 
   function change_tab(e) {
 
@@ -94,6 +103,44 @@ function Bg() {
 
   }
 
+
+  function download_image_func() {
+
+    fetch("http://localhost:5000/no_bg_"+image_name)
+      .then(response => {
+          response.blob().then(blob => {
+              let url = window.URL.createObjectURL(blob);
+              let a = document.createElement('a');
+              a.href = url;
+              a.download = '"http://localhost:5000/"+image_name';
+              a.click();
+          });
+          
+   });
+  }
+
+
+  function close_popup(e) {
+    if(e.target.classList.value == 'cancel' || e.target.classList.value =='closeImg') {
+      setshow_popup(false);
+    } else {
+      setshow_popup(true);
+    }
+    
+  }
+
+
+  function checkbox_checked() {
+
+      if(checkbox_val==false){
+        setcheckbox_val(true);
+      } else {
+        setcheckbox_val(false);
+      }
+    
+  }
+
+
   return (
   <div className="Bg">
 
@@ -137,9 +184,11 @@ function Bg() {
           <div className="right_div_top">
               <div className="right_div_top_text"> תמונה חינם </div>
               <div className="right_div_top_subtext">  612x408 תצוגה מקדימה של תמונה </div>
-              <button className="right_div_top_btn"> הורד </button>
+         
+             <button className="right_div_top_btn" onClick={close_popup}> הורד </button>
               <div className="right_div_top_sub_sub_text"> איכות טובה עד 0.25 מגה פיקסל </div>
           </div>
+
 
           <div className="right_div_bottom">
               <div className="right_div_bottom_text">Pro</div>
@@ -162,6 +211,33 @@ function Bg() {
           <img src={banner}  className="banner_img"/>
 
     </div>
+
+      
+
+        {show_popup ?  
+         <>
+            <div className="overlay">     </div>
+            <div className="download_image_popup">
+              <img src={close} onClick={close_popup} className="closeImg"/>
+                  <div className='top_image'> <img src={download_folder} /></div>
+                  <div className='download_image_popup_text'> אישור להורדת תמונה </div>
+                  <div className='download_image_popup_subtext'>האם להוריד את התמונה?</div>
+                  <div className='download_image_popup_btn_cont'> 
+                    <input type="checkbox" className='checkbox' onChange={checkbox_checked}/>
+                    <span > אני לא רובוט </span>
+
+                    <img src={not_robot}/>
+                    <br/>
+
+                    <button className="cancel" onClick={close_popup}> ביטול </button>
+
+                    <button className="aprove" style={{backgroundColor: checkbox_val==false ? 'gray': '#3f51b5'}} onClick={download_image_func}> אישור </button>
+                  </div>
+              </div>
+           </>
+            : "" }
+      
+
 
     </div>
 
