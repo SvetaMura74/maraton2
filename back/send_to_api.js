@@ -26,7 +26,7 @@ module.exports = async function send_to_api(image_path , fileName, color) {
     encoding: null
     })
     .then((response) => {
-    if(response.status != 200) return console.error('Error:', response.status, response.statusText);
+    if(response.status !== 200) return console.error('Error:', response.status, response.statusText);
         fs.writeFileSync(__dirname + "/upload_image/no_bg_" + fileName , response.data);
     })
     .catch((error) => {
